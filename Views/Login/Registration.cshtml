@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/hover-min.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid" style="background-image: url('/Content/image/loginpage.png'); min-height:700PX;padding-top:100px">
+        <div class="row" style="padding-bottom:30px">
+            <div class="col-sm-12">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-5" style="border:">
+                    <h1 class="text-center" style="font-weight: bold; background-color:green;color:white;border-radius:10px">
+                    
+                    Register</h1>
+                    <span style="font-size: large; font-weight:bold;color:green;">Name</span>
+                    <input type="text" value="" placeholder="Enter your Name" id="txtName" class="form-control">
+                    <span style="font-size: large; font-weight:bold;color:green;">Address</span>
+                    <input type="text" value="" placeholder="Enter your Address." id="txtAddr" class="form-control">
+                    <span style="font-size: large; font-weight:bold;color:green;">Mobile</span>
+                    <input type="number" placeholder="Enter your Mobile No." id="txtMobile" class="form-control">
+                    <span style="font-size: large; font-weight:bold;color:green;">Email</span>
+                    <input type="email" value="" placeholder="Enter email" id="txtEmail" class="form-control">
+                    <span style="font-size: large; font-weight:bold;color:green;">Password</span>
+                    <input type="password" value="" placeholder="Enter password" id="txtPass" class="form-control">
+                    <span style="font-size: large; font-weight:bold;color:green;">Confirm Password</span>
+                    <input type="password" value="" id="txtCpass" placeholder="Enter Confirm password" class="form-control">
+                    <input type="button" value="registration" id="btnReg" class="btn btn-success">
+                    <input type="button" value="Reset" class="btn btn-danger">
+
+
+                </div>
+            </div>
+            <div classs="col-sm-3"></div>
+        </div>
+    </div>
+    <script>
+    $('#btnReg').click(function () {
+        var n = $('#txtName').val();
+        var ad = $('#txtAddr').val();
+        var m = $('#txtMobile').val();
+        var e = $('#txtEmail').val();
+        var cp = $('#txtCass').val();
+        var p = $('#txtPass').val();
+        $.ajax({
+            type: 'post',
+            url: '/Login/SaveData',
+            data: { n, ad, m, e, cp, p },
+            success: function (data) {
+                if (data) {
+                    alert("Registration successful");
+                    window.location = "/Login/LoginPage";
+                }
+                else {
+                    alert("Registration UnSuccessful");
+                }
+            }
+        })
+    })
+    </script>
+</body>
+</html>
